@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC  -D PB_FIELD_32BIT -g -shared -Wl,-soname,libpb.so -o ../../bin/libpb.so CMakeFiles/pb.dir/src/pb_common.o CMakeFiles/pb.dir/src/pb_decode.o CMakeFiles/pb.dir/src/pb_encode.o 

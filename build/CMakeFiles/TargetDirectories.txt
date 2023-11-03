@@ -1,0 +1,8 @@
+/home/ld/work/test/var_manager/build/CMakeFiles/var_monitor.dir
+/home/ld/work/test/var_manager/build/CMakeFiles/test_monitor.dir
+/home/ld/work/test/var_manager/build/CMakeFiles/test_nanopb.dir
+/home/ld/work/test/var_manager/build/CMakeFiles/edit_cache.dir
+/home/ld/work/test/var_manager/build/CMakeFiles/rebuild_cache.dir
+/home/ld/work/test/var_manager/build/pb/CMakeFiles/pb.dir
+/home/ld/work/test/var_manager/build/pb/CMakeFiles/edit_cache.dir
+/home/ld/work/test/var_manager/build/pb/CMakeFiles/rebuild_cache.dir

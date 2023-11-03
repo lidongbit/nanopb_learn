@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC  -O0 -Wall -g -ggdb  -shared -Wl,-soname,libvar_monitor.so -o ../bin/libvar_monitor.so CMakeFiles/var_monitor.dir/var_monitor.o 

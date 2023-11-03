@@ -1,0 +1,1 @@
+/usr/bin/c++  -O0 -Wall -g -ggdb  -rdynamic CMakeFiles/test_monitor.dir/test_monitor.o -o ../bin/test_monitor  -Wl,-rpath,/home/ld/work/test/var_manager/bin ../bin/libvar_monitor.so 

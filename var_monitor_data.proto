@@ -1,0 +1,30 @@
+// syntax = "proto3";
+// 
+// message DoubleArray {
+//   repeated double values = 1;
+// }
+// 
+// message DoubleMatrix {
+//   repeated DoubleArray rows = 1;
+// }
+// 
+// message VarMonitorData {
+//   repeated DoubleMatrix data = 1;
+// }
+
+syntax = "proto2";
+
+//package var_monitor;
+
+message VarMonitorData {
+
+  required int32 len = 1; 
+  required int32 arr_len = 2; 
+
+  message Array{  
+    repeated double data = 1 [packed = true];
+  }
+
+  repeated Array item = 3;
+}
+
