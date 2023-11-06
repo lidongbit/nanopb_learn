@@ -137,7 +137,7 @@ void VarMonitor::upload(unsigned int index)
         monitor_manager_[index].monitor_pool_.pool_.push_back(item); 
     }
     
-    cout<<monitor_manager_[index].monitor_pool_.pool_.size()<<endl;
+    //cout<<monitor_manager_[index].monitor_pool_.pool_.size()<<endl;
     if(monitor_manager_[index].monitor_pool_.pool_.size()==monitor_manager_[index].monitor_config_.itemlen_)
     {
         /* upload */

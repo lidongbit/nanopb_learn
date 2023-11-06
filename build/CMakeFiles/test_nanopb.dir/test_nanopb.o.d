@@ -155,4 +155,5 @@ CMakeFiles/test_nanopb.dir/test_nanopb.o: \
  /usr/include/strings.h \
  /home/ld/work/test/var_manager/./pb/include/pb_encode.h \
  /home/ld/work/test/var_manager/./pb/include/pb.h \
+ /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
  /home/ld/work/test/var_manager/var_monitor_data.pb.h

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include
 
-CXX_FLAGS =  -O0 -Wall -g -ggdb 
+CXX_FLAGS =  -O0 -Wall -g -ggdb -D PB_FIELD_16BIT
 

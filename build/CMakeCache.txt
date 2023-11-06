@@ -225,9 +225,6 @@ pb_BINARY_DIR:STATIC=/home/ld/work/test/var_manager/build/pb
 //Value Computed by CMake
 pb_IS_TOP_LEVEL:STATIC=OFF
 
-//Dependencies for the target
-pb_LIB_DEPENDS:STATIC=general;/usr/local/lib;
-
 //Value Computed by CMake
 pb_SOURCE_DIR:STATIC=/home/ld/work/test/var_manager/pb
 

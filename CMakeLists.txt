@@ -1,6 +1,6 @@
 project(test_monitor)
-
-set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb ")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D PB_FIELD_16BIT")
+set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g -ggdb -D PB_FIELD_16BIT")
 set(CMAKE_BUILD_TYPE "debug")
 
 set(EXECUTABLE_OUTPUT_PATH ${test_monitor_SOURCE_DIR}/bin)

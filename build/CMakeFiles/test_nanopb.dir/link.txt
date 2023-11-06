@@ -1,1 +1,1 @@
-/usr/bin/c++  -O0 -Wall -g -ggdb  -rdynamic CMakeFiles/test_nanopb.dir/test_nanopb.o CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o -o ../bin/test_nanopb   -L./bin  -Wl,-rpath,./bin:/home/ld/work/test/var_manager/bin ../bin/libpb.so 
+/usr/bin/c++  -O0 -Wall -g -ggdb -D PB_FIELD_16BIT -rdynamic CMakeFiles/test_nanopb.dir/test_nanopb.o CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o -o ../bin/test_nanopb   -L./bin  -Wl,-rpath,./bin:/home/ld/work/test/var_manager/bin ../bin/libpb.so 

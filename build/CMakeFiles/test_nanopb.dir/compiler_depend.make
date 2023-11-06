@@ -192,6 +192,7 @@ CMakeFiles/test_nanopb.dir/test_nanopb.o: ../test_nanopb.cpp \
   /usr/include/strings.h \
   ../pb/include/pb_encode.h \
   ../pb/include/pb.h \
+  ../pb/include/pb_decode.h \
   ../var_monitor_data.pb.h
 
 CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
@@ -244,6 +245,8 @@ CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
 /usr/include/c++/11/istream:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
+
+../pb/include/pb_decode.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 
