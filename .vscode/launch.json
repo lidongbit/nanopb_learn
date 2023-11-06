@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/test_nanopb",
+            "program": "${workspaceFolder}/bin/test_monitor",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

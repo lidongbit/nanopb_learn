@@ -8,12 +8,13 @@
 int main() {
     std::vector<std::vector<double>> vdat = {{1.1, 1.2, 1.3}, {2.1, 2.2, 2.3}, {3.1, 3.2, 3.3}};
 
-    /* This is the buffer where we will store our message. */
+    // /* This is the buffer where we will store our message. */
     uint8_t buffer[128];
     size_t message_length;
     bool status;
     
-    /* Encode our message */
+    // /* Encode our message */
+
     {
         /* Allocate space on the stack to store the message data.*/
         VarMonitorData mvar = VarMonitorData_init_zero;
@@ -23,27 +24,18 @@ int main() {
         
         /* Fill in the lucky number */
         mvar.item_count = vdat.size();
-        for(int i = 0; i<mvar.item_count; ++i)
+        mvar.head_count = vdat.size();
+        for(int i = 0; i<(int)mvar.item_count; ++i)
         {
+            sprintf(mvar.head[i],"%d",i);
             mvar.item[i].data_count = vdat[i].size();
-            for(int j = 0; j<vdat[i].size(); ++j)
+            for(int j = 0; j<(int)vdat[i].size(); ++j)
             {
                 mvar.item[i].data[j] = vdat[i][j];
             }
         }
         
         /* Now we are ready to encode the message! */
-        // if (!pb_encode_tag_for_field(&stream, VarMonitorData_Item_fields))
-        //     return false;
-
-    
-        // status = pb_encode_submessage(&stream, VarMonitorData_Item_fields, mvar.item);
-        // if (!status)
-        // {
-        //     printf("Encoding failed: %s\n", PB_GET_ERROR(&stream));
-        //     return 1;
-        // }
-
         status = pb_encode(&stream, VarMonitorData_fields, &mvar);
         message_length = stream.bytes_written;
         
@@ -60,7 +52,7 @@ int main() {
      */
 
     /* But because we are lazy, we will just decode it immediately. */
-    
+
     {
         /* Allocate space for the decoded message. */
         VarMonitorData mvar = VarMonitorData_init_zero;
@@ -79,6 +71,11 @@ int main() {
         }
         
         /* Print the data contained in the message. */
+        for(int i=0; i< mvar.head_count; ++i)
+        {
+            printf("%s, ",mvar.head[i]);
+        }
+        printf("\n");
         for(int i = 0; i<mvar.item_count; ++i)
         {
             for(int j = 0; j<mvar.item[i].data_count; ++j)

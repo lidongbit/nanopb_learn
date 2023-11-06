@@ -1,10 +1,10 @@
 syntax = "proto2";
 
 message VarMonitorData {
- 
+  repeated string head = 1;
   message Item{  
-    repeated double data = 10;
+    repeated double data = 2;
   }
-
-  repeated Item item = 1;
+  repeated Item item = 3;
+  
 }

@@ -4,7 +4,7 @@
 #include <fstream>
 
 using namespace std;
-
+uint8_t VarMonitor::buffer[5*1024*1024];
 MonitorManager_t VarMonitor::monitor_manager_[THREAD_MONITOR_NUM];
 map<unsigned long, unsigned int> VarMonitor::index_map_;
 unsigned int VarMonitor::occupied_index_ = 0;
@@ -35,7 +35,7 @@ VarMonitor::VarMonitor(const char *thread_name)
 
     /* config */
     monitor_manager_[index_map_[pid]].monitor_config_.enable_ = 1;      
-    monitor_manager_[index_map_[pid]].monitor_config_.out_method_ = 0;
+    monitor_manager_[index_map_[pid]].monitor_config_.out_method_ = 2;
     monitor_manager_[index_map_[pid]].monitor_config_.interval_ = 1;
     monitor_manager_[index_map_[pid]].monitor_config_.itemlen_ = 5;
 }
@@ -56,37 +56,37 @@ void VarMonitor::get_monitor_info(MonitorConfig_t *cfg, int nums)
 {
 
 }
-void VarMonitor::push_var(double var)
-{
-    unsigned int index = index_map_[pthread_self()];
-    if(monitor_manager_[index].monitor_config_.enable_)
-    {
-        monitor_manager_[index].monitor_pool_.item_.push_back(var);
-    }
-}
 
-void VarMonitor::push_var(double *var, int nums)
+void VarMonitor::push_var(const char *name, double *var, int nums)
 {
     unsigned int index = index_map_[pthread_self()];
+    
     if(monitor_manager_[index].monitor_config_.enable_)
     {
+        MonitorDataElem_t elem;
+        // MonitorDataElem_t:name
+        if(strlen(name)<VAR_NAME_SIZE)
+        {
+            strncpy(elem.name, name, strlen(name));
+            elem.name[strlen(name)] = '\0';
+        }
+        else
+        {
+            strncpy(elem.name, name, VAR_NAME_SIZE-1);
+            elem.name[VAR_NAME_SIZE-1] = '\0';
+        }
+        // MonitorDataElem_t:data
         for(int i=0;i<nums;++i)
         {
-            monitor_manager_[index].monitor_pool_.item_.push_back(var[i]);
+            elem.elem.push_back(var[i]);
         }
+        monitor_manager_[index].monitor_pool_.item_.push_back(elem);
     }
 }
 
-void VarMonitor::push_var(Eigen::Vector<double,6> &var)
+void VarMonitor::push_var(const char *name, Eigen::Vector<double,6> &var)
 {
-    unsigned int index = index_map_[pthread_self()];
-    if(monitor_manager_[index].monitor_config_.enable_)
-    {
-        for(int i=0;i<6;++i)
-        {
-            monitor_manager_[index].monitor_pool_.item_.push_back(var(i));
-        }
-    }
+    push_var(name, var.data(), 6);
 }
 
 void VarMonitor::push_item()
@@ -104,9 +104,10 @@ void VarMonitor::push_item()
         }
         
         /* add time stamp */
+        MonitorDataElem_t tick;
         gettimeofday(&tv, NULL);
         time_ms = ((long long)tv.tv_sec*1000000 + tv.tv_usec) / 1000;
-        monitor_manager_[index].monitor_pool_.item_.push_back(time_ms);
+        push_var("tick", &time_ms);
 
         /* add monitor data to free lock pool && clear item vector*/
         monitor_manager_[index].monitor_pool_.lock_free_pool_.push(monitor_manager_[index].monitor_pool_.item_);
@@ -123,13 +124,12 @@ void VarMonitor::upload(void)
         {
             VarMonitor::upload((*it).second);
         }
-        
     } 
 }
 
 void VarMonitor::upload(unsigned int index)
 {
-    vector<double> item;
+    vector<MonitorDataElem_t> item;
     monitor_manager_[index].monitor_pool_.lock_free_pool_.pop(item);
 
     if(item.size() != 0)
@@ -162,31 +162,120 @@ void VarMonitor::upload(unsigned int index)
 
 void VarMonitor::output_print(unsigned int index, ostream &output)
 {
-    //output << monitor_manager_[index].monitor_config_.thread_name_ << endl;
-    for(vector<vector<double>>::iterator i = monitor_manager_[index].monitor_pool_.pool_.begin(); i!=monitor_manager_[index].monitor_pool_.pool_.end();++i)
+    // print head
+    for(vector<MonitorDataElem_t>::iterator it = monitor_manager_[index].monitor_pool_.pool_.begin()->begin(); 
+                                            it != monitor_manager_[index].monitor_pool_.pool_.begin()->end(); ++it)
     {
-        for(vector<double>::iterator it = i->begin(); it != i->end(); ++it)
+        for(size_t i = 0; i < it->elem.size(); ++i)
         {
-            output << *it << ",";
+            output << (*it).name << i << ", ";
+        }
+    }
+    output << endl;
+    for(vector<vector<MonitorDataElem_t>>::iterator i = monitor_manager_[index].monitor_pool_.pool_.begin(); 
+                                                    i!=monitor_manager_[index].monitor_pool_.pool_.end();++i)
+    {
+        // print data
+        for(vector<MonitorDataElem_t>::iterator it = i->begin(); it != i->end(); ++it)
+        {
+            for(size_t i = 0; i < it->elem.size(); ++i)
+            {
+                output << (*it).elem[i] << ", ";
+            }
         }
         output << endl;
     }
+}
 
+void VarMonitor::input_decode(unsigned int index, VarMonitorData &mvar, pb_istream_t &stream)
+{
+    size_t message_length;
+    bool status;
+    /* Now we are ready to decode the message. */
+    status = pb_decode(&stream, VarMonitorData_fields, &mvar);
+    
+    /* Check for errors... */
+    if (!status)
+    {
+        printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
+        return;
+    }
+    
+    /* Print the data contained in the message. */
+    for(int i=0; i< mvar.head_count; ++i)
+    {
+        printf("%s, ",mvar.head[i]);
+    }
+    printf("\n");
+    for(int i = 0; i<mvar.item_count; ++i)
+    {
+        for(int j = 0; j<mvar.item[i].data_count; ++j)
+        {
+            printf("%lf, ",mvar.item[i].data[j]);
+        }
+        printf("\n");
+    }
+}
+void VarMonitor::output_encode(unsigned int index, VarMonitorData &mvar, pb_ostream_t &stream, size_t &message_length)
+{
+    bool status;
+    int n = 0;
+    /* Fill in the monitor data */
+    mvar.head_count = 0;
+    mvar.item_count = monitor_manager_[index].monitor_config_.itemlen_;
+
+    for(size_t i = 0; i < monitor_manager_[index].monitor_config_.itemlen_; ++i)
+    {
+        n = 0;
+        for(size_t j = 0; j < monitor_manager_[index].monitor_pool_.pool_[i].size(); ++j)
+        {
+            for(size_t k = 0; k < monitor_manager_[index].monitor_pool_.pool_[i][j].elem.size(); ++k)
+            {
+                if(i == 0)
+                {
+                    sprintf(mvar.head[n], "%s%ld\0", monitor_manager_[index].monitor_pool_.pool_[i][j].name, k);
+                }
+                mvar.item[i].data[n] = monitor_manager_[index].monitor_pool_.pool_[i][j].elem[k];   
+                ++n;
+            }
+        }
+        mvar.item[i].data_count = n;
+        if(i==0) mvar.head_count = n;
+        
+    }
+    
+    /* Now we are ready to encode the message! */
+    status = pb_encode(&stream, VarMonitorData_fields, &mvar);
+    message_length = stream.bytes_written;
+    
+    /* Then just check for any errors.. */
+    if (!status)
+    {
+        printf("Encoding failed: %s\n", PB_GET_ERROR(&stream));
+    }
 }
 
 void VarMonitor::output_network(unsigned int index)
 {
-    if(!monitor_manager_[index].monitor_pool_.item_.empty())
+    size_t message_length;
+     /* Allocate space on the stack to store the message data.*/
+    VarMonitorData mvar = VarMonitorData_init_zero;
+
+    /* Create a stream that will write to our buffer. */
+    pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
+    output_encode(index, mvar, stream, message_length);
+    
     {
-        for(vector<double>::iterator it = monitor_manager_[index].monitor_pool_.item_.begin(); it != monitor_manager_[index].monitor_pool_.item_.end(); ++it)
-        {
-            printf("%lf,",*it);
-        }
-        printf("\n");
-        monitor_manager_[index].monitor_pool_.item_.clear();
+        /* Allocate space for the decoded message. */
+        VarMonitorData mdat = VarMonitorData_init_zero;
+        /* Create a stream that reads from the buffer. */
+        pb_istream_t stream1 = pb_istream_from_buffer(buffer, message_length);
+        input_decode(index, mdat, stream1);
     }
+    
 }
 
+// write interval time must >= 1s
 void VarMonitor::output_file(unsigned int index)
 {
     ofstream log_file;

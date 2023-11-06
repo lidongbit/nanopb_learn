@@ -407,6 +407,12 @@ CMakeFiles/var_monitor.dir/var_monitor.o: \
  /usr/include/c++/11/bits/parse_numbers.h \
  /usr/include/c++/11/bits/std_mutex.h \
  /usr/include/c++/11/bits/unique_lock.h /usr/include/c++/11/iostream \
+ /home/ld/work/test/var_manager/./pb/include/pb.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+ /home/ld/work/test/var_manager/./pb/include/pb_encode.h \
+ /home/ld/work/test/var_manager/./pb/include/pb.h \
+ /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
+ /home/ld/work/test/var_manager/var_monitor_data.pb.h \
  /home/ld/work/test/var_manager/lockfree_queue.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \

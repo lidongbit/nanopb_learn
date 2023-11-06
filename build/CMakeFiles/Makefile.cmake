@@ -46,7 +46,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/var_monitor.dir/DependInfo.cmake"
-  "CMakeFiles/test_monitor.dir/DependInfo.cmake"
   "CMakeFiles/test_nanopb.dir/DependInfo.cmake"
+  "CMakeFiles/test_monitor.dir/DependInfo.cmake"
   "pb/CMakeFiles/pb.dir/DependInfo.cmake"
   )

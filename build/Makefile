@@ -130,19 +130,6 @@ var_monitor/fast:
 .PHONY : var_monitor/fast
 
 #=============================================================================
-# Target rules for targets named test_monitor
-
-# Build rule for target.
-test_monitor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_monitor
-.PHONY : test_monitor
-
-# fast build rule for target.
-test_monitor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/build
-.PHONY : test_monitor/fast
-
-#=============================================================================
 # Target rules for targets named test_nanopb
 
 # Build rule for target.
@@ -154,6 +141,19 @@ test_nanopb: cmake_check_build_system
 test_nanopb/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/build
 .PHONY : test_nanopb/fast
+
+#=============================================================================
+# Target rules for targets named test_monitor
+
+# Build rule for target.
+test_monitor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_monitor
+.PHONY : test_monitor
+
+# fast build rule for target.
+test_monitor/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/build
+.PHONY : test_monitor/fast
 
 #=============================================================================
 # Target rules for targets named pb
@@ -215,17 +215,23 @@ var_monitor.s:
 
 # target to build an object file
 var_monitor_data.pb.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.o
 .PHONY : var_monitor_data.pb.o
 
 # target to preprocess a source file
 var_monitor_data.pb.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.i
 .PHONY : var_monitor_data.pb.i
 
 # target to generate assembly for a file
 var_monitor_data.pb.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.s
 .PHONY : var_monitor_data.pb.s
 
 # Help Target

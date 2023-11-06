@@ -237,6 +237,9 @@ test_monitor_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 test_monitor_SOURCE_DIR:STATIC=/home/ld/work/test/var_manager
 
+//Dependencies for the target
+var_monitor_LIB_DEPENDS:STATIC=general;pb;
+
 
 ########################
 # INTERNAL cache entries

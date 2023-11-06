@@ -1,8 +1,8 @@
 #cmake_minimum_required(VERSION 2.8.3)
 
 project(pb)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D PB_FIELD_16BIT")
-# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D PB_FIELD_32BIT")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D PB_FIELD_32BIT")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D PB_FIELD_32BIT")
 
 include_directories(
 	include
