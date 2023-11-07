@@ -5,11 +5,13 @@
 #include <Eigen/Dense>
 #include <mutex>
 #include <iostream>
+#include <atomic>
 #include <pb.h>
 #include <pb_encode.h>
 #include <pb_decode.h>
 #include "var_monitor_data.pb.h"
 #include "lockfree_queue.h"
+#include "thread_help.h"
 #define THREAD_MONITOR_NUM 10
 #define THREAD_NAME_SIZE 32
 #define VAR_NAME_SIZE 64
@@ -55,9 +57,9 @@ public:
 
     ~VarMonitor();
 
-    static void set_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
-    static void get_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
-    static void get_monitor_info(MonitorConfig_t *cfg, int nums);
+    static bool set_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
+    static bool get_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
+    static bool get_monitor_info(MonitorConfig_t *cfg, int nums);
 
     //static void push_var(double);
     //static void push_var(double *var, int nums);
@@ -65,19 +67,23 @@ public:
     static void push_var(const char *name, Eigen::Vector<double,6> &var);
     static void push_item();
     static void upload(void);
-    static void input_decode(unsigned int index, VarMonitorData &mvar, pb_istream_t &stream);
+    static void input_decode(VarMonitorData &mvar, pb_istream_t &stream);
 private:
+    static void check_thread_name(const char *src_nm, char *dst_name);
     static void upload(unsigned int index);
     static void output_print(unsigned int index, std::ostream &output);
     static void output_network(unsigned int index);
     static void output_file(unsigned int index);
     static void output_encode(unsigned int index, VarMonitorData &mvar, pb_ostream_t &stream, size_t &message_length);
 private:
-    static MonitorManager_t monitor_manager_[THREAD_MONITOR_NUM];
     std::mutex map_mutex_;
+    static int vm_sock_;
+    static std::atomic<int> push_start_;
+    base_space::ThreadHelp vm_thread_;
+    static MonitorManager_t monitor_manager_[THREAD_MONITOR_NUM];
     static std::map<unsigned long, unsigned int> index_map_;
     static unsigned int occupied_index_;
     static uint8_t buffer[5*1024*1024];
 };
-
+extern void *VmDataPushThreadFunc(void * p);
 #endif

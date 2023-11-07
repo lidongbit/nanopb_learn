@@ -414,6 +414,7 @@ CMakeFiles/test_monitor.dir/test_monitor.o: \
  /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
  /home/ld/work/test/var_manager/var_monitor_data.pb.h \
  /home/ld/work/test/var_manager/lockfree_queue.h \
+ /home/ld/work/test/var_manager/./thread_help/include/thread_help.h \
  /usr/include/x86_64-linux-gnu/sys/unistd.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \

@@ -110,6 +110,7 @@ test_monitor_EXTERNAL_OBJECTS =
 ../bin/test_monitor: CMakeFiles/test_monitor.dir/build.make
 ../bin/test_monitor: ../bin/libvar_monitor.so
 ../bin/test_monitor: ../bin/libpb.so
+../bin/test_monitor: ../bin/libthread_help.so
 ../bin/test_monitor: CMakeFiles/test_monitor.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../bin/test_monitor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_monitor.dir/link.txt --verbose=$(VERBOSE)

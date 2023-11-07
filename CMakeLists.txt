@@ -9,8 +9,11 @@ set(LIBRARY_OUTPUT_PATH ${test_monitor_SOURCE_DIR}/bin)
 include_directories(
     ./
     ./pb/include
+    ./thread_help/include/
+    /usr/local/include/
 )
 add_subdirectory(pb)
+add_subdirectory(thread_help)
 
 add_library(var_monitor SHARED
     ./var_monitor.cpp ./var_monitor_data.pb.c
@@ -31,10 +34,22 @@ target_link_libraries(test_nanopb
     pb
 )
 
-add_executable(test_monitor 
-	./test_monitor.cpp  ./var_monitor_data.pb.c
+add_executable(test_monitor_send 
+	./test_monitor_send.cpp  ./var_monitor_data.pb.c
 )
-target_link_libraries(test_monitor
+target_link_libraries(test_monitor_send
     var_monitor
     pb
+    thread_help
+    nanomsg
+)
+
+add_executable(test_monitor_recv 
+	./test_monitor_recv.cpp  ./var_monitor_data.pb.c
+)
+target_link_libraries(test_monitor_recv
+    var_monitor
+    pb
+    thread_help
+    nanomsg
 )

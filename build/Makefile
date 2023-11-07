@@ -143,17 +143,30 @@ test_nanopb/fast:
 .PHONY : test_nanopb/fast
 
 #=============================================================================
-# Target rules for targets named test_monitor
+# Target rules for targets named test_monitor_send
 
 # Build rule for target.
-test_monitor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_monitor
-.PHONY : test_monitor
+test_monitor_send: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_monitor_send
+.PHONY : test_monitor_send
 
 # fast build rule for target.
-test_monitor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/build
-.PHONY : test_monitor/fast
+test_monitor_send/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/build
+.PHONY : test_monitor_send/fast
+
+#=============================================================================
+# Target rules for targets named test_monitor_recv
+
+# Build rule for target.
+test_monitor_recv: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_monitor_recv
+.PHONY : test_monitor_recv
+
+# fast build rule for target.
+test_monitor_recv/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/build
+.PHONY : test_monitor_recv/fast
 
 #=============================================================================
 # Target rules for targets named pb
@@ -168,20 +181,48 @@ pb/fast:
 	$(MAKE) $(MAKESILENT) -f pb/CMakeFiles/pb.dir/build.make pb/CMakeFiles/pb.dir/build
 .PHONY : pb/fast
 
+#=============================================================================
+# Target rules for targets named thread_help
+
+# Build rule for target.
+thread_help: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thread_help
+.PHONY : thread_help
+
+# fast build rule for target.
+thread_help/fast:
+	$(MAKE) $(MAKESILENT) -f thread_help/CMakeFiles/thread_help.dir/build.make thread_help/CMakeFiles/thread_help.dir/build
+.PHONY : thread_help/fast
+
 # target to build an object file
-test_monitor.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/test_monitor.o
-.PHONY : test_monitor.o
+test_monitor_recv.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o
+.PHONY : test_monitor_recv.o
 
 # target to preprocess a source file
-test_monitor.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/test_monitor.i
-.PHONY : test_monitor.i
+test_monitor_recv.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/test_monitor_recv.i
+.PHONY : test_monitor_recv.i
 
 # target to generate assembly for a file
-test_monitor.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/test_monitor.s
-.PHONY : test_monitor.s
+test_monitor_recv.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/test_monitor_recv.s
+.PHONY : test_monitor_recv.s
+
+# target to build an object file
+test_monitor_send.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/test_monitor_send.o
+.PHONY : test_monitor_send.o
+
+# target to preprocess a source file
+test_monitor_send.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/test_monitor_send.i
+.PHONY : test_monitor_send.i
+
+# target to generate assembly for a file
+test_monitor_send.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/test_monitor_send.s
+.PHONY : test_monitor_send.s
 
 # target to build an object file
 test_nanopb.o:
@@ -217,21 +258,24 @@ var_monitor.s:
 var_monitor_data.pb.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o
 .PHONY : var_monitor_data.pb.o
 
 # target to preprocess a source file
 var_monitor_data.pb.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.i
 .PHONY : var_monitor_data.pb.i
 
 # target to generate assembly for a file
 var_monitor_data.pb.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/var_monitor_data.pb.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/var_monitor_data.pb.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/var_monitor_data.pb.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.s
 .PHONY : var_monitor_data.pb.s
 
 # Help Target
@@ -243,12 +287,17 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... pb"
-	@echo "... test_monitor"
+	@echo "... test_monitor_recv"
+	@echo "... test_monitor_send"
 	@echo "... test_nanopb"
+	@echo "... thread_help"
 	@echo "... var_monitor"
-	@echo "... test_monitor.o"
-	@echo "... test_monitor.i"
-	@echo "... test_monitor.s"
+	@echo "... test_monitor_recv.o"
+	@echo "... test_monitor_recv.i"
+	@echo "... test_monitor_recv.s"
+	@echo "... test_monitor_send.o"
+	@echo "... test_monitor_send.i"
+	@echo "... test_monitor_send.s"
 	@echo "... test_nanopb.o"
 	@echo "... test_nanopb.i"
 	@echo "... test_nanopb.s"

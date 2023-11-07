@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include
+C_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include -I/home/ld/work/test/var_manager/./thread_help/include
 
 C_FLAGS =  -D PB_FIELD_32BIT -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include
+CXX_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include -I/home/ld/work/test/var_manager/./thread_help/include
 
 CXX_FLAGS =  -O0 -Wall -g -ggdb -D PB_FIELD_32BIT
 

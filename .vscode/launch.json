@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/test_monitor",
+            "program": "${workspaceFolder}/bin/test_monitor_recv",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,8 @@
                 }
             ],
             "preLaunchTask": "Build",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/usr/bin/gdb",
+            "multiThreadedDebugging": true // 启用多线程调试
         }
     ]
 }

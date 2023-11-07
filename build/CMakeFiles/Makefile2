@@ -65,19 +65,24 @@ CMAKE_BINARY_DIR = /home/ld/work/test/var_manager/build
 # The main recursive "all" target.
 all: CMakeFiles/var_monitor.dir/all
 all: CMakeFiles/test_nanopb.dir/all
-all: CMakeFiles/test_monitor.dir/all
+all: CMakeFiles/test_monitor_send.dir/all
+all: CMakeFiles/test_monitor_recv.dir/all
 all: pb/all
+all: thread_help/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: pb/preinstall
+preinstall: thread_help/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/var_monitor.dir/clean
 clean: CMakeFiles/test_nanopb.dir/clean
-clean: CMakeFiles/test_monitor.dir/clean
+clean: CMakeFiles/test_monitor_send.dir/clean
+clean: CMakeFiles/test_monitor_recv.dir/clean
 clean: pb/clean
+clean: thread_help/clean
 .PHONY : clean
 
 #=============================================================================
@@ -96,13 +101,28 @@ pb/clean: pb/CMakeFiles/pb.dir/clean
 .PHONY : pb/clean
 
 #=============================================================================
+# Directory level rules for directory thread_help
+
+# Recursive "all" directory target.
+thread_help/all: thread_help/CMakeFiles/thread_help.dir/all
+.PHONY : thread_help/all
+
+# Recursive "preinstall" directory target.
+thread_help/preinstall:
+.PHONY : thread_help/preinstall
+
+# Recursive "clean" directory target.
+thread_help/clean: thread_help/CMakeFiles/thread_help.dir/clean
+.PHONY : thread_help/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/var_monitor.dir
 
 # All Build rule for target.
 CMakeFiles/var_monitor.dir/all: pb/CMakeFiles/pb.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/var_monitor.dir/build.make CMakeFiles/var_monitor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=11,12,13 "Built target var_monitor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=16,17,18 "Built target var_monitor"
 .PHONY : CMakeFiles/var_monitor.dir/all
 
 # Build rule for subdir invocation for target.
@@ -128,7 +148,7 @@ CMakeFiles/var_monitor.dir/clean:
 CMakeFiles/test_nanopb.dir/all: pb/CMakeFiles/pb.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_nanopb.dir/build.make CMakeFiles/test_nanopb.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=8,9,10 "Built target test_nanopb"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=11,12,13 "Built target test_nanopb"
 .PHONY : CMakeFiles/test_nanopb.dir/all
 
 # Build rule for subdir invocation for target.
@@ -148,31 +168,60 @@ CMakeFiles/test_nanopb.dir/clean:
 .PHONY : CMakeFiles/test_nanopb.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/test_monitor.dir
+# Target rules for target CMakeFiles/test_monitor_send.dir
 
 # All Build rule for target.
-CMakeFiles/test_monitor.dir/all: CMakeFiles/var_monitor.dir/all
-CMakeFiles/test_monitor.dir/all: pb/CMakeFiles/pb.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=5,6,7 "Built target test_monitor"
-.PHONY : CMakeFiles/test_monitor.dir/all
+CMakeFiles/test_monitor_send.dir/all: CMakeFiles/var_monitor.dir/all
+CMakeFiles/test_monitor_send.dir/all: pb/CMakeFiles/pb.dir/all
+CMakeFiles/test_monitor_send.dir/all: thread_help/CMakeFiles/thread_help.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=8,9,10 "Built target test_monitor_send"
+.PHONY : CMakeFiles/test_monitor_send.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/test_monitor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 10
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_monitor.dir/all
+CMakeFiles/test_monitor_send.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_monitor_send.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 0
-.PHONY : CMakeFiles/test_monitor.dir/rule
+.PHONY : CMakeFiles/test_monitor_send.dir/rule
 
 # Convenience name for target.
-test_monitor: CMakeFiles/test_monitor.dir/rule
-.PHONY : test_monitor
+test_monitor_send: CMakeFiles/test_monitor_send.dir/rule
+.PHONY : test_monitor_send
 
 # clean rule for target.
-CMakeFiles/test_monitor.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor.dir/build.make CMakeFiles/test_monitor.dir/clean
-.PHONY : CMakeFiles/test_monitor.dir/clean
+CMakeFiles/test_monitor_send.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_send.dir/build.make CMakeFiles/test_monitor_send.dir/clean
+.PHONY : CMakeFiles/test_monitor_send.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_monitor_recv.dir
+
+# All Build rule for target.
+CMakeFiles/test_monitor_recv.dir/all: CMakeFiles/var_monitor.dir/all
+CMakeFiles/test_monitor_recv.dir/all: pb/CMakeFiles/pb.dir/all
+CMakeFiles/test_monitor_recv.dir/all: thread_help/CMakeFiles/thread_help.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=5,6,7 "Built target test_monitor_recv"
+.PHONY : CMakeFiles/test_monitor_recv.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_monitor_recv.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 12
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_monitor_recv.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_monitor_recv.dir/rule
+
+# Convenience name for target.
+test_monitor_recv: CMakeFiles/test_monitor_recv.dir/rule
+.PHONY : test_monitor_recv
+
+# clean rule for target.
+CMakeFiles/test_monitor_recv.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_monitor_recv.dir/build.make CMakeFiles/test_monitor_recv.dir/clean
+.PHONY : CMakeFiles/test_monitor_recv.dir/clean
 
 #=============================================================================
 # Target rules for target pb/CMakeFiles/pb.dir
@@ -199,6 +248,32 @@ pb: pb/CMakeFiles/pb.dir/rule
 pb/CMakeFiles/pb.dir/clean:
 	$(MAKE) $(MAKESILENT) -f pb/CMakeFiles/pb.dir/build.make pb/CMakeFiles/pb.dir/clean
 .PHONY : pb/CMakeFiles/pb.dir/clean
+
+#=============================================================================
+# Target rules for target thread_help/CMakeFiles/thread_help.dir
+
+# All Build rule for target.
+thread_help/CMakeFiles/thread_help.dir/all:
+	$(MAKE) $(MAKESILENT) -f thread_help/CMakeFiles/thread_help.dir/build.make thread_help/CMakeFiles/thread_help.dir/depend
+	$(MAKE) $(MAKESILENT) -f thread_help/CMakeFiles/thread_help.dir/build.make thread_help/CMakeFiles/thread_help.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ld/work/test/var_manager/build/CMakeFiles --progress-num=14,15 "Built target thread_help"
+.PHONY : thread_help/CMakeFiles/thread_help.dir/all
+
+# Build rule for subdir invocation for target.
+thread_help/CMakeFiles/thread_help.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thread_help/CMakeFiles/thread_help.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ld/work/test/var_manager/build/CMakeFiles 0
+.PHONY : thread_help/CMakeFiles/thread_help.dir/rule
+
+# Convenience name for target.
+thread_help: thread_help/CMakeFiles/thread_help.dir/rule
+.PHONY : thread_help
+
+# clean rule for target.
+thread_help/CMakeFiles/thread_help.dir/clean:
+	$(MAKE) $(MAKESILENT) -f thread_help/CMakeFiles/thread_help.dir/build.make thread_help/CMakeFiles/thread_help.dir/clean
+.PHONY : thread_help/CMakeFiles/thread_help.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

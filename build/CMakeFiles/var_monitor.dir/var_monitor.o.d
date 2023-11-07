@@ -413,8 +413,9 @@ CMakeFiles/var_monitor.dir/var_monitor.o: \
  /home/ld/work/test/var_manager/./pb/include/pb.h \
  /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
  /home/ld/work/test/var_manager/var_monitor_data.pb.h \
- /home/ld/work/test/var_manager/lockfree_queue.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /home/ld/work/test/var_manager/lockfree_queue.h \
+ /home/ld/work/test/var_manager/./thread_help/include/thread_help.h \
+ /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
  /usr/include/x86_64-linux-gnu/bits/confname.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
@@ -425,4 +426,5 @@ CMakeFiles/var_monitor.dir/var_monitor.o: \
  /usr/include/c++/11/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc
+ /usr/include/c++/11/bits/fstream.tcc /usr/local/include/nanomsg/nn.h \
+ /usr/local/include/nanomsg/pair.h

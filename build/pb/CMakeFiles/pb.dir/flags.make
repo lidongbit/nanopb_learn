@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -Dpb_EXPORTS
 
-C_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include -I/home/ld/work/test/var_manager/pb/include
+C_INCLUDES = -I/home/ld/work/test/var_manager/. -I/home/ld/work/test/var_manager/./pb/include -I/home/ld/work/test/var_manager/./thread_help/include -I/home/ld/work/test/var_manager/pb/include
 
 C_FLAGS =  -D PB_FIELD_32BIT -D PB_FIELD_32BIT -g -fPIC
 

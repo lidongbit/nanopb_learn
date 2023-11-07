@@ -472,6 +472,7 @@ CMakeFiles/var_monitor.dir/var_monitor.o: ../var_monitor.cpp \
   ../pb/include/pb_decode.h \
   ../var_monitor_data.pb.h \
   ../lockfree_queue.h \
+  ../thread_help/include/thread_help.h \
   /usr/include/unistd.h \
   /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
   /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -485,7 +486,9 @@ CMakeFiles/var_monitor.dir/var_monitor.o: ../var_monitor.cpp \
   /usr/include/c++/11/bits/codecvt.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/local/include/nanomsg/nn.h \
+  /usr/local/include/nanomsg/pair.h
 
 CMakeFiles/var_monitor.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
   /usr/include/stdc-predef.h \
@@ -515,6 +518,8 @@ CMakeFiles/var_monitor.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/strings.h
 
+
+/usr/local/include/nanomsg/nn.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
 
@@ -998,6 +1003,8 @@ CMakeFiles/var_monitor.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
+/usr/local/include/nanomsg/pair.h:
+
 /usr/include/c++/11/bits/std_mutex.h:
 
 /usr/local/include/Eigen/src/Core/Inverse.h:
@@ -1097,6 +1104,8 @@ CMakeFiles/var_monitor.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
+
+../thread_help/include/thread_help.h:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
 

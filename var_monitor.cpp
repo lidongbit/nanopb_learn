@@ -2,8 +2,13 @@
 #include <unistd.h>
 #include <sys/time.h>
 #include <fstream>
+#include "nanomsg/nn.h"
+#include "nanomsg/pair.h"
 
 using namespace std;
+
+int VarMonitor::vm_sock_;
+std::atomic<int> VarMonitor::push_start_;
 uint8_t VarMonitor::buffer[5*1024*1024];
 MonitorManager_t VarMonitor::monitor_manager_[THREAD_MONITOR_NUM];
 map<unsigned long, unsigned int> VarMonitor::index_map_;
@@ -14,8 +19,9 @@ VarMonitor::VarMonitor(const char *thread_name)
     pthread_t pid = pthread_self();
 
     map_mutex_.lock();
-    if(occupied_index_ >= THREAD_MONITOR_NUM)
+        if(occupied_index_ >= THREAD_MONITOR_NUM)
     {
+        printf("[VarMonitor]: index out of range!\n");
         map_mutex_.unlock();
         return;
     }
@@ -37,24 +43,105 @@ VarMonitor::VarMonitor(const char *thread_name)
     monitor_manager_[index_map_[pid]].monitor_config_.enable_ = 1;      
     monitor_manager_[index_map_[pid]].monitor_config_.out_method_ = 2;
     monitor_manager_[index_map_[pid]].monitor_config_.interval_ = 1;
-    monitor_manager_[index_map_[pid]].monitor_config_.itemlen_ = 5;
+    monitor_manager_[index_map_[pid]].monitor_config_.itemlen_ = 5000;
+    push_start_.store(1);
+
+    if(index_map_[pid] == 0)
+    {
+        /* bind socket which is used for var monitor */
+        if ((vm_sock_ = nn_socket(AF_SP, NN_PAIR)) < 0) {
+            
+            printf("sampleing nn_socket error!\n");
+            return;
+        }
+        int to = 5000;
+        if (nn_setsockopt(vm_sock_, NN_SOL_SOCKET, NN_SNDTIMEO, &to,
+            sizeof(to)) < 0) {
+            printf("nn_setsockopt error\n");
+            return;
+        }
+        if (nn_bind(vm_sock_, "tcp://127.0.0.1:11119") < 0) {
+            
+            printf("sampleing nn_bind error!\n");
+            nn_close(vm_sock_);
+            return;
+        }
+
+        if(!vm_thread_.run(VmDataPushThreadFunc, this, 20, false))
+        {
+            printf("VmDataPushThreadFunc start thread failed!\n");
+            return;
+        }
+    }
 }
 
 VarMonitor::~VarMonitor()
 {
-
+    printf("~VarMonitor!\n");
+    vm_thread_.cancel();
+    nn_close(vm_sock_);
 }
-void VarMonitor::set_monitor_info(const char *thread_name, MonitorConfig_t &cfg)
-{
 
+void VarMonitor::check_thread_name(const char *src_nm, char *dst_name)
+{
+    if (strlen(src_nm) > (THREAD_NAME_SIZE - 1))
+    {
+        memcpy(dst_name, src_nm, (THREAD_NAME_SIZE - 1));
+        dst_name[THREAD_NAME_SIZE - 1] = '\0';
+    }
+    else
+    {
+        strcpy(dst_name, src_nm);
+    }
 }
-void VarMonitor::get_monitor_info(const char *thread_name, MonitorConfig_t &cfg)
-{
 
+bool VarMonitor::set_monitor_info(const char *thread_name, MonitorConfig_t &cfg)
+{
+    char thread_nm[THREAD_NAME_SIZE];
+    check_thread_name(thread_name, thread_nm);
+
+    map<unsigned long, unsigned int>::iterator it;
+    for(it=index_map_.begin();it!=index_map_.end();it++)
+    {
+        if(strcmp(monitor_manager_[(*it).second].monitor_config_.thread_name_, thread_nm) == 0)
+        {
+            memcpy(&monitor_manager_[(*it).second].monitor_config_, &cfg, sizeof(MonitorConfig_t));
+            return true;
+        }
+    } 
+    return false;
 }
-void VarMonitor::get_monitor_info(MonitorConfig_t *cfg, int nums)
-{
 
+bool VarMonitor::get_monitor_info(const char *thread_name, MonitorConfig_t &cfg)
+{
+    char thread_nm[THREAD_NAME_SIZE];
+    check_thread_name(thread_name, thread_nm);
+
+    map<unsigned long, unsigned int>::iterator it;
+    for(it=index_map_.begin();it!=index_map_.end();it++)
+    {
+        if(strcmp(monitor_manager_[(*it).second].monitor_config_.thread_name_, thread_nm) == 0)
+        {
+            memcpy(&monitor_manager_[(*it).second].monitor_config_, &cfg, sizeof(MonitorConfig_t));
+            return true;
+        }
+    } 
+    return false;
+}
+
+bool VarMonitor::get_monitor_info(MonitorConfig_t *cfg, int nums)
+{
+    int i = 0;
+    if(nums < (int)(index_map_.size()))
+        return false;
+
+    map<unsigned long, unsigned int>::iterator it;
+    for(it=index_map_.begin();it!=index_map_.end();it++)
+    {
+        memcpy(&cfg[i], &monitor_manager_[(*it).second].monitor_config_, sizeof(MonitorConfig_t));
+        i++;
+    } 
+    return true;
 }
 
 void VarMonitor::push_var(const char *name, double *var, int nums)
@@ -130,13 +217,23 @@ void VarMonitor::upload(void)
 void VarMonitor::upload(unsigned int index)
 {
     vector<MonitorDataElem_t> item;
-    monitor_manager_[index].monitor_pool_.lock_free_pool_.pop(item);
-
-    if(item.size() != 0)
+    while(1)
     {
+        monitor_manager_[index].monitor_pool_.lock_free_pool_.pop(item);
+        // pop nothing
+        if(item.size() == 0)
+        {
+            break;
+        }
+
         monitor_manager_[index].monitor_pool_.pool_.push_back(item); 
+        item.clear();
+        // save up enough
+        if(monitor_manager_[index].monitor_pool_.pool_.size()==monitor_manager_[index].monitor_config_.itemlen_)
+        {
+            break;
+        }
     }
-    
     //cout<<monitor_manager_[index].monitor_pool_.pool_.size()<<endl;
     if(monitor_manager_[index].monitor_pool_.pool_.size()==monitor_manager_[index].monitor_config_.itemlen_)
     {
@@ -187,9 +284,8 @@ void VarMonitor::output_print(unsigned int index, ostream &output)
     }
 }
 
-void VarMonitor::input_decode(unsigned int index, VarMonitorData &mvar, pb_istream_t &stream)
+void VarMonitor::input_decode(VarMonitorData &mvar, pb_istream_t &stream)
 {
-    size_t message_length;
     bool status;
     /* Now we are ready to decode the message. */
     status = pb_decode(&stream, VarMonitorData_fields, &mvar);
@@ -202,20 +298,21 @@ void VarMonitor::input_decode(unsigned int index, VarMonitorData &mvar, pb_istre
     }
     
     /* Print the data contained in the message. */
-    for(int i=0; i< mvar.head_count; ++i)
+    for(int i=0; i< (int)mvar.head_count; ++i)
     {
         printf("%s, ",mvar.head[i]);
     }
     printf("\n");
-    for(int i = 0; i<mvar.item_count; ++i)
+    for(int i = 0; i<(int)mvar.item_count; ++i)
     {
-        for(int j = 0; j<mvar.item[i].data_count; ++j)
+        for(int j = 0; j<(int)mvar.item[i].data_count; ++j)
         {
             printf("%lf, ",mvar.item[i].data[j]);
         }
         printf("\n");
     }
 }
+
 void VarMonitor::output_encode(unsigned int index, VarMonitorData &mvar, pb_ostream_t &stream, size_t &message_length)
 {
     bool status;
@@ -233,7 +330,7 @@ void VarMonitor::output_encode(unsigned int index, VarMonitorData &mvar, pb_ostr
             {
                 if(i == 0)
                 {
-                    sprintf(mvar.head[n], "%s%ld\0", monitor_manager_[index].monitor_pool_.pool_[i][j].name, k);
+                    sprintf(mvar.head[n], "%s_%ld", monitor_manager_[index].monitor_pool_.pool_[i][j].name, k);
                 }
                 mvar.item[i].data[n] = monitor_manager_[index].monitor_pool_.pool_[i][j].elem[k];   
                 ++n;
@@ -257,20 +354,68 @@ void VarMonitor::output_encode(unsigned int index, VarMonitorData &mvar, pb_ostr
 
 void VarMonitor::output_network(unsigned int index)
 {
-    size_t message_length;
+    uint32_t message_length;
+    uint32_t pack_size = 32768;// 32kB per package
+    uint32_t cnt = 0;
+    uint32_t rest = 0;
+    uint32_t i = 0;
+    int32_t bytes = 0;
      /* Allocate space on the stack to store the message data.*/
     VarMonitorData mvar = VarMonitorData_init_zero;
 
     /* Create a stream that will write to our buffer. */
     pb_ostream_t stream = pb_ostream_from_buffer(buffer, sizeof(buffer));
-    output_encode(index, mvar, stream, message_length);
-    
+    output_encode(index, mvar, stream, (size_t&)message_length);
+    printf("message_length: %d\n", message_length);
+
+    //nn_send(vm_sock_,message_length, sizeof(size_t));
+    //nn_send(vm_sock_, buffer, message_length, 0);
+
+    if(push_start_.load() == 1)
     {
-        /* Allocate space for the decoded message. */
-        VarMonitorData mdat = VarMonitorData_init_zero;
-        /* Create a stream that reads from the buffer. */
-        pb_istream_t stream1 = pb_istream_from_buffer(buffer, message_length);
-        input_decode(index, mdat, stream1);
+        cnt = message_length / pack_size;
+        rest = message_length % pack_size;
+
+        // 1. send total bytes
+        bytes = nn_send(vm_sock_,&message_length,sizeof(uint32_t),0);
+        if (bytes < 0) {
+
+            // sampleing total bytes nn_send error
+            goto PUSH_TIMEOUT;
+
+        }
+        
+        // 2. send packages
+        if(cnt != 0)
+        {
+            for(i = 0; i < cnt; i++) 
+            {
+                bytes = nn_send(vm_sock_, &buffer[i*pack_size], pack_size, 0);
+
+                if (bytes < 0) {
+
+                    printf("sampleing data nn_send error! i=%d cnt=%d\n", i, cnt);
+                    goto PUSH_TIMEOUT;
+
+                }else{
+
+                    assert(bytes == (int)pack_size);
+                }
+            }
+        }
+
+        // 3. send last packages
+        bytes = nn_send(vm_sock_, &buffer[i*pack_size], rest, 0);
+        if (bytes < 0) {
+
+            //sampleing last data nn_send error!
+            goto PUSH_TIMEOUT;
+        }
+
+        // 4. send finished or error process
+PUSH_TIMEOUT:
+        //push_start_.store(0);
+        printf("---------------------------\n");
     }
     
 }
@@ -293,4 +438,14 @@ void VarMonitor::output_file(unsigned int index)
     log_file.close();
 }
 
-
+void *VmDataPushThreadFunc(void * p)
+{
+    printf("VmDataPushThreadFunc is running!\n");
+    while(1)
+    {
+        VarMonitor::upload();
+        //usleep(50000);  // 50ms
+        usleep(10);
+    }
+    
+}

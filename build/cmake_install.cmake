@@ -45,6 +45,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/ld/work/test/var_manager/build/pb/cmake_install.cmake")
+  include("/home/ld/work/test/var_manager/build/thread_help/cmake_install.cmake")
 
 endif()
 
