@@ -43,7 +43,7 @@ VarMonitor::VarMonitor(const char *thread_name)
     monitor_manager_[index_map_[pid]].monitor_config_.enable_ = 1;      
     monitor_manager_[index_map_[pid]].monitor_config_.out_method_ = 2;
     monitor_manager_[index_map_[pid]].monitor_config_.interval_ = 1;
-    monitor_manager_[index_map_[pid]].monitor_config_.itemlen_ = 5000;
+    monitor_manager_[index_map_[pid]].monitor_config_.itemlen_ = 200;
     push_start_.store(1);
 
     if(index_map_[pid] == 0)
@@ -296,7 +296,7 @@ void VarMonitor::input_decode(VarMonitorData &mvar, pb_istream_t &stream)
         printf("Decoding failed: %s\n", PB_GET_ERROR(&stream));
         return;
     }
-    
+    printf("%s\n",mvar.thread_name);
     /* Print the data contained in the message. */
     for(int i=0; i< (int)mvar.head_count; ++i)
     {
@@ -318,6 +318,7 @@ void VarMonitor::output_encode(unsigned int index, VarMonitorData &mvar, pb_ostr
     bool status;
     int n = 0;
     /* Fill in the monitor data */
+    strcpy(mvar.thread_name,monitor_manager_[index].monitor_config_.thread_name_);
     mvar.head_count = 0;
     mvar.item_count = monitor_manager_[index].monitor_config_.itemlen_;
 
@@ -444,8 +445,6 @@ void *VmDataPushThreadFunc(void * p)
     while(1)
     {
         VarMonitor::upload();
-        //usleep(50000);  // 50ms
-        usleep(10);
+        usleep(50000);  // 50ms
     }
-    
 }

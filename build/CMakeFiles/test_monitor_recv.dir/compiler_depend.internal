@@ -474,6 +474,14 @@ CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o
  /home/ld/work/test/var_manager/var_monitor/include/var_monitor_data.pb.h
  /home/ld/work/test/var_manager/var_monitor/include/lockfree_queue.h
  /home/ld/work/test/var_manager/thread_help/include/thread_help.h
+ /usr/include/unistd.h
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h
+ /usr/include/x86_64-linux-gnu/bits/environments.h
+ /usr/include/x86_64-linux-gnu/bits/confname.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h
+ /usr/include/linux/close_range.h
  /usr/local/include/nanomsg/nn.h
  /usr/local/include/nanomsg/pair.h
 

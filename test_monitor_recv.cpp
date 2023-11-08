@@ -67,7 +67,7 @@ int main(void)
         VarMonitor::input_decode(mdat, stream);
         memset(buff, 0, 5*1024*1024);
         total_bytes = 0;
-        usleep(100000);
+        usleep(50000);
     }
 
     nn_close(vm_sock_);

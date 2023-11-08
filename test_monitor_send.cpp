@@ -13,7 +13,7 @@ void *thread_1(void* param_ptr)
     Eigen::Vector<double, 6> var;
     var<<1,1,1,1,1,1;
     double index = 0;
-    for(int i=0;i<10000;i++)
+    for(int i=0;i<400;i++)
     {
         index = i;
         var = var.array() + 1;
@@ -24,9 +24,9 @@ void *thread_1(void* param_ptr)
             VarMonitor::push_var("Vector6", var);
         }
         VarMonitor::push_item();
-        usleep(10);
+        usleep(5000); // 5ms
     }
-    usleep(20000000);
+    usleep(10000000);
     return NULL;
 }
 
@@ -34,8 +34,9 @@ int main()
 {
     pthread_t tid[4];
     pthread_create(&tid[0], NULL, thread_1, NULL);
-    //pthread_create(&tid[1], NULL, thread_2, NULL);
+    pthread_create(&tid[1], NULL, thread_1, NULL);
     //pthread_create(&tid[2], NULL, thread_1, NULL);
     pthread_join(tid[0], NULL);
+    pthread_join(tid[1], NULL);
     return 0;
 }
