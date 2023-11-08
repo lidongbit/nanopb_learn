@@ -8,34 +8,26 @@ set(LIBRARY_OUTPUT_PATH ${test_monitor_SOURCE_DIR}/bin)
 
 include_directories(
     ./
-    ./pb/include
+    ./pb/include/
     ./thread_help/include/
+    ./var_monitor/include/
     /usr/local/include/
 )
 add_subdirectory(pb)
 add_subdirectory(thread_help)
-
-add_library(var_monitor SHARED
-    ./var_monitor.cpp ./var_monitor_data.pb.c
-)
-target_link_libraries(var_monitor
-    pb
-)
-
-link_directories(
-    ./bin/
-)
+add_subdirectory(var_monitor)
 
 
 add_executable(test_nanopb
-	./test_nanopb.cpp   ./var_monitor_data.pb.c
+	./test_nanopb.cpp
 )
 target_link_libraries(test_nanopb
     pb
+    var_monitor
 )
 
 add_executable(test_monitor_send 
-	./test_monitor_send.cpp  ./var_monitor_data.pb.c
+	./test_monitor_send.cpp
 )
 target_link_libraries(test_monitor_send
     var_monitor
@@ -44,8 +36,12 @@ target_link_libraries(test_monitor_send
     nanomsg
 )
 
+link_directories(
+    ./bin/
+)
+
 add_executable(test_monitor_recv 
-	./test_monitor_recv.cpp  ./var_monitor_data.pb.c
+	./test_monitor_recv.cpp 
 )
 target_link_libraries(test_monitor_recv
     var_monitor

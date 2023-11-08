@@ -1,9 +1,6 @@
 #include "var_monitor.h"
 #include <iostream>
-#include <pthread.h>
 #include <unistd.h>
-#include <sys/time.h>
-#include <fstream>
 #include "nanomsg/nn.h"
 #include "nanomsg/pair.h"
 using namespace std;
@@ -25,7 +22,7 @@ int main(void)
         printf("nn_setsockopt error\n");
         return -1;
     }
-    if (nn_connect(vm_sock_, "tcp://127.0.0.1:11119") < 0) {
+    if (nn_connect(vm_sock_, "tcp://192.168.56.101:11119") < 0) {
         
         printf("sampleing nn_bind error!\n");
         nn_close(vm_sock_);

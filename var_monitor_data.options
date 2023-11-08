@@ -1,4 +1,0 @@
-VarMonitorData.item   max_count:5000
-VarMonitorData.Item.data   max_count:128
-VarMonitorData.head  max_size:64
-VarMonitorData.head   max_count:128
