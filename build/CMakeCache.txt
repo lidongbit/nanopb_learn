@@ -249,8 +249,17 @@ thread_help_LIB_DEPENDS:STATIC=general;pthread;
 //Value Computed by CMake
 thread_help_SOURCE_DIR:STATIC=/home/ld/work/test/var_manager/thread_help
 
+//Value Computed by CMake
+var_monitor_BINARY_DIR:STATIC=/home/ld/work/test/var_manager/build/var_monitor
+
+//Value Computed by CMake
+var_monitor_IS_TOP_LEVEL:STATIC=OFF
+
 //Dependencies for the target
-var_monitor_LIB_DEPENDS:STATIC=general;pb;
+var_monitor_LIB_DEPENDS:STATIC=general;pb;general;thread_help;general;nanomsg;
+
+//Value Computed by CMake
+var_monitor_SOURCE_DIR:STATIC=/home/ld/work/test/var_manager/var_monitor
 
 
 ########################
@@ -357,7 +366,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

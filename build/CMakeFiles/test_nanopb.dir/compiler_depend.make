@@ -193,38 +193,8 @@ CMakeFiles/test_nanopb.dir/test_nanopb.o: ../test_nanopb.cpp \
   ../pb/include/pb_encode.h \
   ../pb/include/pb.h \
   ../pb/include/pb_decode.h \
-  ../var_monitor_data.pb.h
+  ../var_monitor/include/var_monitor_data.pb.h
 
-CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
-  /usr/include/stdc-predef.h \
-  ../var_monitor_data.pb.h \
-  ../pb/include/pb.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
-  /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/features.h \
-  /usr/include/features-time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
-  /usr/include/x86_64-linux-gnu/bits/timesize.h \
-  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
-  /usr/include/x86_64-linux-gnu/bits/long-double.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h
-
-
-../var_monitor_data.pb.c:
 
 ../pb/include/pb_encode.h:
 
@@ -508,6 +478,8 @@ CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
 
 /usr/include/c++/11/clocale:
 
+../var_monitor/include/var_monitor_data.pb.h:
+
 /usr/include/c++/11/debug/debug.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
@@ -561,8 +533,6 @@ CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
 /usr/include/c++/11/ext/atomicity.h:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
-
-../var_monitor_data.pb.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
 

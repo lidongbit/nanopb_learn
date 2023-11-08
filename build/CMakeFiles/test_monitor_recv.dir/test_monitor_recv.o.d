@@ -1,6 +1,7 @@
 CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o: \
  /home/ld/work/test/var_manager/test_monitor_recv.cpp \
- /usr/include/stdc-predef.h /home/ld/work/test/var_manager/var_monitor.h \
+ /usr/include/stdc-predef.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/var_monitor.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -412,8 +413,8 @@ CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o: \
  /home/ld/work/test/var_manager/./pb/include/pb_encode.h \
  /home/ld/work/test/var_manager/./pb/include/pb.h \
  /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
- /home/ld/work/test/var_manager/var_monitor_data.pb.h \
- /home/ld/work/test/var_manager/lockfree_queue.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/var_monitor_data.pb.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/lockfree_queue.h \
  /home/ld/work/test/var_manager/./thread_help/include/thread_help.h \
  /usr/include/unistd.h /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
  /usr/include/x86_64-linux-gnu/bits/environments.h \
@@ -421,10 +422,5 @@ CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h \
- /usr/include/x86_64-linux-gnu/sys/time.h /usr/include/c++/11/fstream \
- /usr/include/c++/11/bits/codecvt.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
- /usr/include/c++/11/bits/fstream.tcc /usr/local/include/nanomsg/nn.h \
+ /usr/include/linux/close_range.h /usr/local/include/nanomsg/nn.h \
  /usr/local/include/nanomsg/pair.h

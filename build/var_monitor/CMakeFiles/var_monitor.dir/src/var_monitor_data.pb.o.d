@@ -1,7 +1,7 @@
-CMakeFiles/test_nanopb.dir/var_monitor_data.pb.o: \
- /home/ld/work/test/var_manager/var_monitor_data.pb.c \
+var_monitor/CMakeFiles/var_monitor.dir/src/var_monitor_data.pb.o: \
+ /home/ld/work/test/var_manager/var_monitor/src/var_monitor_data.pb.c \
  /usr/include/stdc-predef.h \
- /home/ld/work/test/var_manager/var_monitor_data.pb.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/var_monitor_data.pb.h \
  /home/ld/work/test/var_manager/./pb/include/pb.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h /usr/include/stdint.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \

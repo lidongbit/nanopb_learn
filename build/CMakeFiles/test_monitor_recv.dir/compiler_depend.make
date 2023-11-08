@@ -3,7 +3,7 @@
 
 CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o: ../test_monitor_recv.cpp \
   /usr/include/stdc-predef.h \
-  ../var_monitor.h \
+  ../var_monitor/include/var_monitor.h \
   /usr/include/c++/11/map \
   /usr/include/c++/11/bits/stl_tree.h \
   /usr/include/c++/11/bits/stl_algobase.h \
@@ -470,74 +470,18 @@ CMakeFiles/test_monitor_recv.dir/test_monitor_recv.o: ../test_monitor_recv.cpp \
   ../pb/include/pb_encode.h \
   ../pb/include/pb.h \
   ../pb/include/pb_decode.h \
-  ../var_monitor_data.pb.h \
-  ../lockfree_queue.h \
+  ../var_monitor/include/var_monitor_data.pb.h \
+  ../var_monitor/include/lockfree_queue.h \
   ../thread_help/include/thread_help.h \
-  /usr/include/unistd.h \
-  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
-  /usr/include/x86_64-linux-gnu/bits/environments.h \
-  /usr/include/x86_64-linux-gnu/bits/confname.h \
-  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
-  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
-  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
-  /usr/include/linux/close_range.h \
-  /usr/include/x86_64-linux-gnu/sys/time.h \
-  /usr/include/c++/11/fstream \
-  /usr/include/c++/11/bits/codecvt.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
-  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
-  /usr/include/c++/11/bits/fstream.tcc \
   /usr/local/include/nanomsg/nn.h \
   /usr/local/include/nanomsg/pair.h
-
-CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
-  /usr/include/stdc-predef.h \
-  ../var_monitor_data.pb.h \
-  ../pb/include/pb.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
-  /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/features.h \
-  /usr/include/features-time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
-  /usr/include/x86_64-linux-gnu/bits/timesize.h \
-  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
-  /usr/include/x86_64-linux-gnu/bits/long-double.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h
 
 
 /usr/local/include/nanomsg/nn.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+../var_monitor/include/lockfree_queue.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
-/usr/include/c++/11/fstream:
-
-/usr/include/x86_64-linux-gnu/sys/time.h:
-
-/usr/include/linux/close_range.h:
-
-/usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_core.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-../lockfree_queue.h:
+../var_monitor/include/var_monitor_data.pb.h:
 
 ../pb/include/pb.h:
 
@@ -625,8 +569,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/local/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
 
-/usr/local/include/Eigen/src/Core/SolveTriangular.h:
-
 /usr/local/include/Eigen/src/Core/products/GeneralMatrixMatrix.h:
 
 /usr/local/include/Eigen/src/Core/ProductEvaluators.h:
@@ -656,8 +598,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Core/DiagonalProduct.h:
 
 /usr/local/include/Eigen/src/Core/Diagonal.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/local/include/Eigen/src/Core/DiagonalMatrix.h:
 
@@ -719,8 +659,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/local/include/Eigen/src/plugins/BlockMethods.h:
 
-/usr/include/c++/11/bits/fstream.tcc:
-
 /usr/local/include/Eigen/src/Core/DenseBase.h:
 
 /usr/local/include/Eigen/src/Core/DenseCoeffsBase.h:
@@ -750,8 +688,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Core/arch/Default/TypeCasting.h:
 
 /usr/local/include/Eigen/src/Core/arch/Default/BFloat16.h:
-
-../var_monitor_data.pb.c:
 
 /usr/local/include/Eigen/src/Core/arch/Default/Half.h:
 
@@ -963,8 +899,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/ext/type_traits.h:
 
-/usr/include/x86_64-linux-gnu/bits/environments.h:
-
 /usr/local/include/Eigen/src/misc/Image.h:
 
 /usr/include/c++/11/bits/exception_defines.h:
@@ -972,18 +906,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h:
 
 ../test_monitor_recv.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/c++/11/bits/stl_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/c++/11/vector:
 
 /usr/local/include/Eigen/src/Geometry/Homogeneous.h:
 
@@ -1107,6 +1029,16 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/features-time64.h:
 
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/c++/11/vector:
+
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
@@ -1141,8 +1073,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/tr1/beta_function.tcc:
 
-../var_monitor.h:
-
 /usr/include/c++/11/array:
 
 /usr/local/include/Eigen/src/Core/TriangularMatrix.h:
@@ -1157,6 +1087,10 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:
+
+../var_monitor/include/var_monitor.h:
+
 /usr/include/c++/11/iostream:
 
 /usr/include/x86_64-linux-gnu/bits/fp-fast.h:
@@ -1168,8 +1102,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/include/c++/11/cassert:
 
 /usr/include/c++/11/bits/stl_algo.h:
-
-/usr/include/unistd.h:
 
 /usr/local/include/Eigen/src/Core/util/IntegralConstant.h:
 
@@ -1283,9 +1215,9 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/cstdint:
 
-/usr/include/c++/11/bits/ptr_traits.h:
-
 /usr/include/endian.h:
+
+/usr/include/c++/11/bits/ptr_traits.h:
 
 /usr/include/c++/11/bits/erase_if.h:
 
@@ -1298,6 +1230,8 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/include/c++/11/clocale:
 
 /usr/include/c++/11/bits/ostream.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/local/include/Eigen/src/Core/Reverse.h:
 
@@ -1330,8 +1264,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Eigenvalues/Tridiagonalization.h:
 
 /usr/include/x86_64-linux-gnu/bits/cpu-set.h:
-
-/usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/local/include/Eigen/src/Core/ArithmeticSequence.h:
 
@@ -1405,8 +1337,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/bits/charconv.h:
 
-../var_monitor_data.pb.h:
-
 /usr/include/c++/11/bits/basic_string.tcc:
 
 /usr/include/c++/11/ios:
@@ -1452,8 +1382,6 @@ CMakeFiles/test_monitor_recv.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/include/c++/11/bits/hashtable.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
-
-/usr/include/c++/11/bits/codecvt.h:
 
 /usr/include/c++/11/bits/basic_ios.tcc:
 

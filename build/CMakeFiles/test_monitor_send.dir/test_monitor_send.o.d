@@ -1,6 +1,7 @@
 CMakeFiles/test_monitor_send.dir/test_monitor_send.o: \
  /home/ld/work/test/var_manager/test_monitor_send.cpp \
- /usr/include/stdc-predef.h /home/ld/work/test/var_manager/var_monitor.h \
+ /usr/include/stdc-predef.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/var_monitor.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -412,8 +413,8 @@ CMakeFiles/test_monitor_send.dir/test_monitor_send.o: \
  /home/ld/work/test/var_manager/./pb/include/pb_encode.h \
  /home/ld/work/test/var_manager/./pb/include/pb.h \
  /home/ld/work/test/var_manager/./pb/include/pb_decode.h \
- /home/ld/work/test/var_manager/var_monitor_data.pb.h \
- /home/ld/work/test/var_manager/lockfree_queue.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/var_monitor_data.pb.h \
+ /home/ld/work/test/var_manager/./var_monitor/include/lockfree_queue.h \
  /home/ld/work/test/var_manager/./thread_help/include/thread_help.h \
  /usr/include/x86_64-linux-gnu/sys/unistd.h /usr/include/unistd.h \
  /usr/include/x86_64-linux-gnu/bits/posix_opt.h \

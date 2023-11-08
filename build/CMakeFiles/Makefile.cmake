@@ -13,6 +13,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "../pb/CMakeLists.txt"
   "../thread_help/CMakeLists.txt"
+  "../var_monitor/CMakeLists.txt"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
@@ -43,14 +44,15 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "pb/CMakeFiles/CMakeDirectoryInformation.cmake"
   "thread_help/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "var_monitor/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/var_monitor.dir/DependInfo.cmake"
   "CMakeFiles/test_nanopb.dir/DependInfo.cmake"
   "CMakeFiles/test_monitor_send.dir/DependInfo.cmake"
   "CMakeFiles/test_monitor_recv.dir/DependInfo.cmake"
   "pb/CMakeFiles/pb.dir/DependInfo.cmake"
   "thread_help/CMakeFiles/thread_help.dir/DependInfo.cmake"
+  "var_monitor/CMakeFiles/var_monitor.dir/DependInfo.cmake"
   )

@@ -3,7 +3,7 @@
 
 CMakeFiles/test_monitor_send.dir/test_monitor_send.o: ../test_monitor_send.cpp \
   /usr/include/stdc-predef.h \
-  ../var_monitor.h \
+  ../var_monitor/include/var_monitor.h \
   /usr/include/c++/11/map \
   /usr/include/c++/11/bits/stl_tree.h \
   /usr/include/c++/11/bits/stl_algobase.h \
@@ -470,8 +470,8 @@ CMakeFiles/test_monitor_send.dir/test_monitor_send.o: ../test_monitor_send.cpp \
   ../pb/include/pb_encode.h \
   ../pb/include/pb.h \
   ../pb/include/pb_decode.h \
-  ../var_monitor_data.pb.h \
-  ../lockfree_queue.h \
+  ../var_monitor/include/var_monitor_data.pb.h \
+  ../var_monitor/include/lockfree_queue.h \
   ../thread_help/include/thread_help.h \
   /usr/include/x86_64-linux-gnu/sys/unistd.h \
   /usr/include/unistd.h \
@@ -483,34 +483,6 @@ CMakeFiles/test_monitor_send.dir/test_monitor_send.o: ../test_monitor_send.cpp \
   /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
   /usr/include/linux/close_range.h
 
-CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c \
-  /usr/include/stdc-predef.h \
-  ../var_monitor_data.pb.h \
-  ../pb/include/pb.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h \
-  /usr/include/stdint.h \
-  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
-  /usr/include/features.h \
-  /usr/include/features-time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
-  /usr/include/x86_64-linux-gnu/bits/timesize.h \
-  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
-  /usr/include/x86_64-linux-gnu/bits/long-double.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
-  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
-  /usr/include/x86_64-linux-gnu/bits/types.h \
-  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
-  /usr/include/x86_64-linux-gnu/bits/time64.h \
-  /usr/include/x86_64-linux-gnu/bits/wchar.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
-  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h \
-  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
-  /usr/include/string.h \
-  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
-  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h
-
 
 /usr/include/linux/close_range.h:
 
@@ -520,7 +492,9 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
-../lockfree_queue.h:
+../var_monitor/include/lockfree_queue.h:
+
+../var_monitor/include/var_monitor_data.pb.h:
 
 ../pb/include/pb.h:
 
@@ -607,8 +581,6 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Core/products/SelfadjointMatrixVector.h:
 
 /usr/local/include/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h:
-
-/usr/local/include/Eigen/src/Core/SolveTriangular.h:
 
 /usr/local/include/Eigen/src/Core/products/GeneralMatrixMatrix.h:
 
@@ -731,8 +703,6 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Core/arch/Default/TypeCasting.h:
 
 /usr/local/include/Eigen/src/Core/arch/Default/BFloat16.h:
-
-../var_monitor_data.pb.c:
 
 /usr/local/include/Eigen/src/Core/arch/Default/Half.h:
 
@@ -976,72 +946,6 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
-/usr/include/x86_64-linux-gnu/bits/locale.h:
-
-/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
-
-/usr/include/c++/11/bits/stl_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/c++/11/vector:
-
-/usr/local/include/Eigen/src/Geometry/Homogeneous.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
-
-/usr/local/include/Eigen/src/Core/util/ConfigureVectorization.h:
-
-/usr/local/include/Eigen/src/Core/VectorwiseOp.h:
-
-/usr/include/c++/11/bits/stl_iterator_base_types.h:
-
-/usr/include/c++/11/bits/std_mutex.h:
-
-/usr/local/include/Eigen/src/Core/Inverse.h:
-
-/usr/local/include/Eigen/src/Core/SelfCwiseBinaryOp.h:
-
-/usr/include/c++/11/tr1/poly_laguerre.tcc:
-
-/usr/include/c++/11/cstdlib:
-
-/usr/include/assert.h:
-
-/usr/include/c++/11/tr1/gamma.tcc:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-/usr/include/c++/11/bits/cpp_type_traits.h:
-
-/usr/include/pthread.h:
-
-/usr/local/include/Eigen/LU:
-
-/usr/include/c++/11/ext/numeric_traits.h:
-
-/usr/include/errno.h:
-
-/usr/include/features.h:
-
-/usr/local/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h:
-
-/usr/include/c++/11/bits/stl_multimap.h:
-
-/usr/include/c++/11/bits/unique_lock.h:
-
-/usr/local/include/Eigen/QR:
-
-/usr/include/c++/11/bits/uses_allocator.h:
-
 /usr/include/c++/11/bits/vector.tcc:
 
 /usr/include/stdc-predef.h:
@@ -1088,6 +992,70 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/features-time64.h:
 
+/usr/include/c++/11/tr1/gamma.tcc:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/11/bits/cpp_type_traits.h:
+
+/usr/include/pthread.h:
+
+/usr/local/include/Eigen/src/Geometry/Homogeneous.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/local/include/Eigen/src/Core/util/ConfigureVectorization.h:
+
+/usr/local/include/Eigen/src/Core/VectorwiseOp.h:
+
+/usr/include/c++/11/bits/stl_iterator_base_types.h:
+
+/usr/include/c++/11/bits/std_mutex.h:
+
+/usr/local/include/Eigen/src/Core/Inverse.h:
+
+/usr/local/include/Eigen/src/Core/SelfCwiseBinaryOp.h:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/11/cstdlib:
+
+/usr/include/assert.h:
+
+/usr/local/include/Eigen/LU:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/errno.h:
+
+/usr/include/features.h:
+
+/usr/local/include/Eigen/src/plugins/MatrixCwiseUnaryOps.h:
+
+/usr/include/c++/11/bits/stl_multimap.h:
+
+/usr/include/c++/11/bits/unique_lock.h:
+
+/usr/local/include/Eigen/QR:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
+
+/usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
+
+/usr/include/c++/11/vector:
+
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
@@ -1122,8 +1090,6 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/tr1/beta_function.tcc:
 
-../var_monitor.h:
-
 /usr/include/c++/11/array:
 
 /usr/local/include/Eigen/src/Core/TriangularMatrix.h:
@@ -1137,6 +1103,10 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/local/include/Eigen/src/Core/GeneralProduct.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/local/include/Eigen/src/Core/SolveTriangular.h:
+
+../var_monitor/include/var_monitor.h:
 
 /usr/include/c++/11/iostream:
 
@@ -1280,6 +1250,8 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 
 /usr/include/c++/11/bits/ostream.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
 /usr/local/include/Eigen/src/Core/Reverse.h:
 
 /usr/include/c++/11/cctype:
@@ -1385,8 +1357,6 @@ CMakeFiles/test_monitor_send.dir/var_monitor_data.pb.o: ../var_monitor_data.pb.c
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h:
 
 /usr/include/c++/11/bits/charconv.h:
-
-../var_monitor_data.pb.h:
 
 /usr/include/c++/11/bits/basic_string.tcc:
 

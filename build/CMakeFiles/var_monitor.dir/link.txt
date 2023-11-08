@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -O0 -Wall -g -ggdb -D PB_FIELD_32BIT -shared -Wl,-soname,libvar_monitor.so -o ../bin/libvar_monitor.so CMakeFiles/var_monitor.dir/var_monitor.o CMakeFiles/var_monitor.dir/var_monitor_data.pb.o  -Wl,-rpath,/home/ld/work/test/var_manager/bin ../bin/libpb.so 
