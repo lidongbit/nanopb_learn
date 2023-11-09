@@ -18,7 +18,7 @@
 typedef struct
 {
     char thread_name_[THREAD_NAME_SIZE];
-    unsigned int enable_;
+    std::atomic<bool> enable_;
     unsigned int out_method_; /*0-console 1-file 2-network*/
     unsigned int interval_;
     unsigned int itemlen_;
@@ -56,13 +56,14 @@ public:
     VarMonitor(const char *thread_name);
 
     ~VarMonitor();
+    static bool start(const char *name);
+    static bool stop(const char *name);
+    static bool set_monitor_info(const char *thread_name, unsigned int out_method, 
+                                    unsigned int interval, unsigned int itemlen);
 
-    static bool set_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
-    static bool get_monitor_info(const char *thread_name, MonitorConfig_t &cfg);
-    static bool get_monitor_info(MonitorConfig_t *cfg, int nums);
+    static bool get_monitor_info(const char *thread_name, unsigned int *out_method, 
+                                    unsigned int *interval, unsigned int *itemlen);
 
-    //static void push_var(double);
-    //static void push_var(double *var, int nums);
     static void push_var(const char *name, double *var, int nums=1);
     static void push_var(const char *name, Eigen::Vector<double,6> &var);
     static void push_item();
@@ -71,6 +72,7 @@ public:
 private:
     static void check_thread_name(const char *src_nm, char *dst_name);
     static void upload(unsigned int index);
+    static void clear(unsigned int index);
     static void output_print(unsigned int index, std::ostream &output);
     static void output_network(unsigned int index);
     static void output_file(unsigned int index);

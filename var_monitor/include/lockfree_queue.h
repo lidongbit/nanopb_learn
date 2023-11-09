@@ -47,7 +47,7 @@ public:
      */
     LockFreeQueue()
     {
-        head_.store(new Node( T() ));
+        head_.store(new Node( T() ));// first node is not used !!! 
         tail_ = head_.load();       
     }
     /**
@@ -103,6 +103,12 @@ public:
         {
             Node* first = head_.load();
             Node* last = tail_.load();
+
+            if(first->next == nullptr)
+            {
+                return false; 
+            }
+
             Node* next = first->next.load();
             if(first == head_.load())
             {
@@ -127,7 +133,17 @@ public:
         }       
         return true;
     }
-
+    void clear()
+    {
+        while(head_ != nullptr)
+        {
+            Node* p = head_.load();
+            if(p->next == nullptr)
+                break;
+            head_.store(p->next);
+            delete p;
+        }
+    }
     private:
         std::atomic<Node*> head_;   /**< Head pointer of the queue.*/
         std::atomic<Node*> tail_;   /**< Tail pointer of the queue.*/

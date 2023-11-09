@@ -71,14 +71,14 @@ int main() {
         }
         
         /* Print the data contained in the message. */
-        for(int i=0; i< mvar.head_count; ++i)
+        for(int i=0; i< (int)mvar.head_count; ++i)
         {
             printf("%s, ",mvar.head[i]);
         }
         printf("\n");
-        for(int i = 0; i<mvar.item_count; ++i)
+        for(int i = 0; i<(int)mvar.item_count; ++i)
         {
-            for(int j = 0; j<mvar.item[i].data_count; ++j)
+            for(int j = 0; j<(int)mvar.item[i].data_count; ++j)
             {
                 printf("%lf, ",mvar.item[i].data[j]);
             }
